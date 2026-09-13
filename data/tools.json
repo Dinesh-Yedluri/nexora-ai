@@ -2298,5 +2298,80 @@
     "pricing": "Paid",
     "description": "AI real estate feasibility and site planning software.",
     "website": "https://www.testfit.io"
+  },
+  {
+    "id": 209,
+    "name": "Cursor",
+    "category": "Coding",
+    "use_cases": [
+      "coding",
+      "website creation",
+      "app development",
+      "programming"
+    ],
+    "rating": 4.7,
+    "efficiency": 9.4,
+    "pricing": "Free + Paid",
+    "description": "AI-powered code editor that helps you build apps and websites faster with smart autocomplete and chat.",
+    "website": "https://cursor.com"
+  },
+  {
+    "id": 210,
+    "name": "Lovable",
+    "category": "Website Builder",
+    "use_cases": [
+      "website creation",
+      "web design",
+      "app development",
+      "no-code"
+    ],
+    "rating": 4.6,
+    "efficiency": 9.2,
+    "pricing": "Free + Paid",
+    "description": "AI tool that builds full websites and web apps from a simple text prompt.",
+    "website": "https://lovable.dev"
+  },
+  {
+    "id": 211,
+    "name": "Bolt.new",
+    "category": "Website Builder",
+    "use_cases": [
+      "website creation",
+      "web design",
+      "app development",
+      "coding"
+    ],
+    "rating": 4.5,
+    "efficiency": 9.1,
+    "pricing": "Free + Paid",
+    "description": "AI web development tool that generates and runs full-stack apps directly in the browser.",
+    "website": "https://bolt.new"
+  },
+  {
+    "id": 212,
+    "name": "v0",
+    "category": "Website Builder",
+    "use_cases": ["website creation", "web design", "ui design", "coding"],
+    "rating": 4.5,
+    "efficiency": 9.0,
+    "pricing": "Free + Paid",
+    "description": "AI tool by Vercel that generates UI components and web pages from text prompts.",
+    "website": "https://v0.dev"
+  },
+  {
+    "id": 213,
+    "name": "Replit",
+    "category": "Coding",
+    "use_cases": [
+      "coding",
+      "website creation",
+      "app development",
+      "collaboration"
+    ],
+    "rating": 4.5,
+    "efficiency": 9.0,
+    "pricing": "Free + Paid",
+    "description": "Online coding platform with AI assistance to build, run, and deploy apps and websites.",
+    "website": "https://replit.com"
   }
 ]

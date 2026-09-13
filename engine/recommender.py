@@ -19,6 +19,8 @@ SYNONYMS = {
     "voice": ["audio", "speech", "voiceover"],
     "audio": ["voice", "sound", "music"],
     "design": ["graphic design", "graphics", "visual design"],
+    "website": ["web design", "webpage", "site builder", "landing page"],
+    "web design": ["website", "webpage", "site builder"],
 }
 
 
