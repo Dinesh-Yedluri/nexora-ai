@@ -947,6 +947,16 @@ if find_clicked:
                 width="stretch"
             )
 
+            share_text = f"Check out these AI tools I found on NEXORA AI for '{user_query}': "
+            share_text += ", ".join([t["name"] for t in ranked_tools[:5]])
+            whatsapp_url = f"https://wa.me/?text={share_text.replace(' ', '%20').replace(chr(39), '')}"
+
+            st.link_button(
+                "📤 Share via WhatsApp",
+                whatsapp_url,
+                width="stretch"
+            )
+
 
 # -----------------------------
 # BROWSE BY CATEGORY
