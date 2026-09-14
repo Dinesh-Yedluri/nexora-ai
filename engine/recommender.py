@@ -105,9 +105,14 @@ def recommend_tools(user_query, tools, min_results=MIN_RESULTS):
             matched.append((tool, relevance))
             matched_names.add(tool["name"])
 
-    # Highest relevance first
+    def combined_score(tool):
+        rating = tool.get("rating", 0) / 5
+        efficiency = tool.get("efficiency", 0) / 10
+        return (rating + efficiency) / 2
+
+    # Highest relevance first, tie-break by rating + efficiency
     matched.sort(
-        key=lambda x: x[1],
+        key=lambda x: (x[1], combined_score(x[0])),
         reverse=True
     )
 
