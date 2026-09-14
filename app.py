@@ -113,6 +113,7 @@ st.markdown(
         padding: 1rem 1.3rem;
         font-size: 1.05rem;
         background: {card_bg};
+        color: {text_color} !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         transition: border-color 0.25s ease, box-shadow 0.25s ease;
     }}
@@ -138,6 +139,26 @@ st.markdown(
         transition: all 0.2s ease;
     }}
 
+    .stButton button {{
+    position: relative;
+    overflow: hidden;
+    }}
+
+    .stButton button::before {{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+    }}
+
+    .stButton button:hover::before {{
+    left: 100%;
+    }}
+
     .stButton button:hover, .stLinkButton a:hover {{
         background-color: {accent_hover} !important;
         color: white !important;
@@ -150,11 +171,14 @@ st.markdown(
     }}
 
     div[data-testid="stVerticalBlockBorderWrapper"] {{
-        border-radius: 16px !important;
-        border: 1px solid {card_border} !important;
-        background: {card_bg};
-        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        animation: fadeInUp 0.5s ease both;
+    border-radius: 16px !important;
+    border: 1px solid {card_border} !important;
+    background: {card_bg}cc;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    animation: fadeInUp 0.5s ease both;
     }}
 
     div[data-testid="stVerticalBlockBorderWrapper"]:hover {{
@@ -195,10 +219,14 @@ st.markdown(
     }}
 
     .nexora-hero-title {{
-        font-family: 'Space Grotesk', sans-serif;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        animation: fadeInUp 0.6s ease both;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    animation: fadeInUp 0.6s ease both;
+    background: linear-gradient(90deg, {accent}, #ff6ec4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     }}
 
     .nexora-hero-sub {{
@@ -215,42 +243,92 @@ st.markdown(
         z-index: 1;
     }}
 
+    div[data-testid="stProgress"] > div > div {{
+    background: linear-gradient(90deg, {accent}, #ff6ec4) !important;
+    }}
+
+    .blob {{
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: -1;
+    opacity: 0.35;
+    animation: float 18s ease-in-out infinite;
+}}
+
+.blob1 {{
+    width: 420px;
+    height: 420px;
+    background: {accent};
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+}}
+
+.blob2 {{
+    width: 380px;
+    height: 380px;
+    background: #ff6ec4;
+    top: 40%;
+    right: -120px;
+    animation-delay: 6s;
+    }}
+
+    .blob3 {{
+    width: 300px;
+    height: 300px;
+    background: {accent};
+    bottom: -100px;
+    left: 30%;
+    animation-delay: 12s;
+    }}
+
+    @keyframes float {{
+    0%, 100% {{ transform: translate(0, 0) scale(1); }}
+    33% {{ transform: translate(40px, 60px) scale(1.1); }}
+    66% {{ transform: translate(-30px, -40px) scale(0.95); }}
+    }}
+
+    header[data-testid="stHeader"] {{
+    background: {sidebar_bg} !important;
+    }}
+
+    header[data-testid="stHeader"] button,
+    header[data-testid="stHeader"] span,
+    header[data-testid="stHeader"] p,
+    header[data-testid="stHeader"] a {{
+        color: {text_color} !important;
+        opacity: 1 !important;
+    }}
+
+    header[data-testid="stHeader"] svg {{
+        fill: {text_color} !important;
+        opacity: 1 !important;
+    }}
+
+    div[data-testid="stToolbar"] button,
+    div[data-testid="stToolbar"] span {{
+        color: {text_color} !important;
+        opacity: 1 !important;
+    }}
+
+    div[data-testid="stToolbar"] svg {{
+        fill: {text_color} !important;
+        opacity: 1 !important;
+    }}
+
     </style>
     """,
     unsafe_allow_html=True
 )
 
 
+
 st.markdown(
     """
-    <video autoplay muted loop playsinline
-        style="
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: {video_opacity};
-        ">
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-    </video>
-    """,
-    unsafe_allow_html=True
-)
-st.markdown(
-    f"""
-    <div style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: {card_bg};
-        opacity: 0.75;
-        z-index: -1;
-    "></div>
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
     """,
     unsafe_allow_html=True
 )
