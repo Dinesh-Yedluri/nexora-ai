@@ -276,6 +276,12 @@ CATEGORY_ICONS = {
     "Chatbot Builder": "💬",
 }
 
+def format_count(n):
+    if n >= 1_000_000:
+        return f"{n/1_000_000:.1f}M"
+    elif n >= 1_000:
+        return f"{n/1_000:.1f}K"
+    return str(n)
 
 def get_icon(category):
     return CATEGORY_ICONS.get(category, "🔧")
@@ -640,11 +646,17 @@ def render_tool_card(index, tool):
 
         top_col1, top_col2, top_col3 = st.columns([5, 2, 1.3])
 
-        with top_col1:
-            icon = get_icon(tool.get("category", ""))
-            trending_badge = " 🔥" if tool.get("rating", 0) >= 4.5 else ""
-            st.markdown(f"#### {icon} {index}. {tool['name']}{trending_badge}")
-            st.caption(f"🗂️ {tool['category']}  •  💰 {tool['pricing']}")
+    with top_col1:
+        icon = get_icon(tool.get("category", ""))
+        trending_badge = " 🔥" if tool.get("rating", 0) >= 4.5 else ""
+        st.markdown(f"#### {icon} {index}. {tool['name']}{trending_badge}")
+        base_reviews = tool.get("reviews", 0)
+        live_reviews = len(st.session_state.reviews.get(tool["name"], []))
+        total_reviews = base_reviews + live_reviews
+        st.caption(
+            f"🗂️ {tool['category']}  •  💰 {tool['pricing']}  •  "
+            f"⭐ {tool.get('rating', 0)} ({format_count(total_reviews)} ratings)"
+    )
 
        
         with top_col2:
