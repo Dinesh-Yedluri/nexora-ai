@@ -621,6 +621,37 @@ st.divider()
 
 
 # -----------------------------
+# COMPARE TOOLS
+# -----------------------------
+
+if st.session_state.compare_list:
+    st.markdown("### ⚖️ Compare Tools")
+    st.caption(f"Comparing {len(st.session_state.compare_list)} tool(s) side by side")
+    st.write("")
+
+    compare_cols = st.columns(len(st.session_state.compare_list))
+
+    for i, (name, tool) in enumerate(st.session_state.compare_list.items()):
+        with compare_cols[i]:
+            with st.container(border=True):
+                icon = get_icon(tool.get("category", ""))
+                st.markdown(f"**{icon} {tool['name']}**")
+                st.caption(tool.get("category", ""))
+                st.write(f"⭐ Rating: {tool.get('rating', 0)}/5")
+                st.write(f"⚡ Efficiency: {tool.get('efficiency', 0)}/10")
+                st.write(f"💰 Pricing: {tool.get('pricing', '')}")
+                st.write(tool.get("description", ""))
+                if st.button("Remove", key=f"compare_remove_{name}"):
+                    toggle_compare(tool)
+                    st.rerun()
+
+    if st.button("🗑️ Clear All"):
+        st.session_state.compare_list = {}
+        st.rerun()
+
+    st.divider()
+
+# -----------------------------
 # COMMUNITY FAVORITES
 # -----------------------------
 
