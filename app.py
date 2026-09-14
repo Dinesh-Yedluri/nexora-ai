@@ -670,6 +670,60 @@ if st.session_state.favorites:
     st.divider()
 
 # -----------------------------
+# BROWSE BY CATEGORY
+# -----------------------------
+
+st.markdown("### 🗂️ Browse by Category")
+st.caption("Tap a category to see tools inside it")
+st.write("")
+
+if "browse_category" not in st.session_state:
+    st.session_state.browse_category = None
+
+category_counts_browse = {}
+for tool in tools:
+    cat = tool.get("category", "Other")
+    category_counts_browse[cat] = category_counts_browse.get(cat, 0) + 1
+
+sorted_cats = sorted(category_counts_browse.keys())
+
+chip_rows = [sorted_cats[i:i+6] for i in range(0, len(sorted_cats), 6)]
+
+for row in chip_rows:
+    row_cols = st.columns(len(row))
+    for i, cat in enumerate(row):
+        with row_cols[i]:
+            icon = get_icon(cat)
+            label = f"{icon} {cat} ({category_counts_browse[cat]})"
+            if st.button(label, key=f"browse_{cat}", width="stretch"):
+                if st.session_state.browse_category == cat:
+                    st.session_state.browse_category = None
+                else:
+                    st.session_state.browse_category = cat
+                st.rerun()
+
+if st.session_state.browse_category:
+    st.write("")
+    cat_tools = [
+        t for t in tools
+        if t.get("category") == st.session_state.browse_category
+    ]
+    st.markdown(f"#### Showing **{len(cat_tools)}** tools in {st.session_state.browse_category}")
+
+    for i in range(0, len(cat_tools), 3):
+        row_tools = cat_tools[i:i+3]
+        cols = st.columns(3)
+        for j, tool in enumerate(row_tools):
+            with cols[j]:
+                with st.container(border=True):
+                    icon = get_icon(tool.get("category", ""))
+                    st.markdown(f"**{icon} {tool['name']}**")
+                    st.caption(f"⭐ {tool.get('rating', 0)}/5 • {tool.get('pricing', '')}")
+                    st.write(tool.get("description", ""))
+
+st.divider()
+
+# -----------------------------
 # DASHBOARD / STATS
 # -----------------------------
 
