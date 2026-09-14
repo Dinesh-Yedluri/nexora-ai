@@ -621,6 +621,34 @@ st.divider()
 
 
 # -----------------------------
+# TRENDING THIS WEEK
+# -----------------------------
+
+st.write("")
+trending_tools = sorted(
+    [t for t in tools if t.get("rating", 0) >= 4.6],
+    key=lambda t: t.get("rating", 0),
+    reverse=True
+)[:6]
+
+if trending_tools:
+    st.markdown("### 🔥 Trending This Week")
+    st.caption("Top-rated tools everyone's using right now")
+    st.write("")
+
+    trend_cols = st.columns(len(trending_tools))
+    for i, tool in enumerate(trending_tools):
+        with trend_cols[i]:
+            with st.container(border=True):
+                icon = get_icon(tool.get("category", ""))
+                st.markdown(f"**{icon} {tool['name']}**")
+                st.caption(f"⭐ {tool.get('rating', 0)}/5")
+
+st.write("")
+st.divider()
+
+
+# -----------------------------
 # COMPARE TOOLS
 # -----------------------------
 
